@@ -1,5 +1,5 @@
 # ── Dataset (large files — download separately via kaggle_dataset_installer.py) ──
-src/data/raw/Datasets/
+src/data/raw/
 src/data/processed/
 
 # ── Trained model checkpoints (large binary files) ────────────────────────────
