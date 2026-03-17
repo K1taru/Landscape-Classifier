@@ -105,11 +105,25 @@ def generate_training_report(report_data, save_path):
     add(f"| Dropout Rate | {d['dropout_rate']} |")
     add(f"| Gradient Clipping (max_norm) | {d['max_grad_norm']} |")
     add(f"| LR Scheduler | {d.get('scheduler_name', 'CosineAnnealingWarmRestarts')} |")
-    add(f"| Scheduler T_0 | {d['cosine_t_0']} |")
-    add(f"| Scheduler T_mult | {d['cosine_t_mult']} |")
-    add(f"| Scheduler eta_min | {d['cosine_eta_min']} |")
+    scheduler_params = d.get('scheduler_params')
+    if scheduler_params:
+        for param_key, param_val in scheduler_params.items():
+            add(f"| Scheduler {param_key} | {param_val} |")
+    else:
+        # Legacy fallback for reports generated before scheduler_params was added
+        add(f"| Scheduler T_0 | {d.get('cosine_t_0', 'N/A')} |")
+        add(f"| Scheduler T_mult | {d.get('cosine_t_mult', 'N/A')} |")
+        add(f"| Scheduler eta_min | {d.get('cosine_eta_min', 'N/A')} |")
     add(f"| Max Epochs | {d['max_epochs']} |")
     add(f"| Early Stopping Patience | {d['early_stopping_patience']} |")
+    prog_unfreeze = d.get('progressive_unfreeze', False)
+    add(f"| Progressive Unfreezing | {'Enabled' if prog_unfreeze else 'Disabled'} |")
+    if prog_unfreeze and d.get('unfreeze_schedule'):
+        schedule_str = ", ".join(
+            f"{layer} @ epoch {ep}"
+            for layer, ep in sorted(d['unfreeze_schedule'].items(), key=lambda x: x[1])
+        )
+        add(f"| Unfreeze Schedule | {schedule_str} |")
     add()
 
     # ── Data Augmentation ─────────────────────────────────────────────
