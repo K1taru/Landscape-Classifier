@@ -17,3 +17,6 @@ tqdm>=4.65.0
 
 # Dataset download
 kagglehub>=0.2.0
+
+# Inference app UI
+gradio>=5.0.0
