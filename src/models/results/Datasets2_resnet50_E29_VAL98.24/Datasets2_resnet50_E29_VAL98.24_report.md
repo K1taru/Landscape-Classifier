@@ -134,6 +134,79 @@
 | Best Train Top-5 Accuracy | 100.00% |
 | Best Val Top-5 Accuracy | 100.00% |
 
+
+================================================================================
+                         🎯 MODEL EVALUATION SUMMARY
+================================================================================
+
+📦 Model Architecture: RESNET50
+📊 Dataset: Datasets2
+🔢 Number of Classes: 5 (collapsed_building, fire, flooded_areas, normal, traffic_incident)
+🧪 Test Set Size: 966 images
+
+────────────────────────────────────────────────────────────────────────────────
+📈 OVERALL PERFORMANCE METRICS:
+────────────────────────────────────────────────────────────────────────────────
+  Overall Accuracy:         98.24%
+  Balanced Accuracy:        96.75%
+  Macro Precision:          96.92%
+  Macro Recall:             96.75%
+  Macro F1-Score:           96.80%
+  Weighted Precision:       98.26%
+  Weighted Recall:          98.24%
+  Weighted F1-Score:        98.24%
+
+────────────────────────────────────────────────────────────────────────────────
+✅ BEST PERFORMING CLASSES (Top-3):
+────────────────────────────────────────────────────────────────────────────────
+  1. fire: F1=100.00%, Accuracy=100.00%, Support=81
+  2. normal: F1= 99.08%, Accuracy= 99.08%, Support=653
+  3. flooded_areas: F1= 98.88%, Accuracy=100.00%, Support=88
+
+────────────────────────────────────────────────────────────────────────────────
+⚠️  WORST PERFORMING CLASSES (Bottom-3):
+────────────────────────────────────────────────────────────────────────────────
+  1. flooded_areas: F1= 98.88%, Accuracy=100.00%, Support=88
+  2. collapsed_building: F1= 93.43%, Accuracy= 90.14%, Support=71
+  3. traffic_incident: F1= 92.62%, Accuracy= 94.52%, Support=73
+
+────────────────────────────────────────────────────────────────────────────────
+🔄 CONFUSION INSIGHTS:
+────────────────────────────────────────────────────────────────────────────────
+  Most confused pair: normal → traffic_incident (5 misclassifications)
+  Total misclassifications: 17
+  Error rate: 1.76%
+
+────────────────────────────────────────────────────────────────────────────────
+🎲 CONFIDENCE STATISTICS:
+────────────────────────────────────────────────────────────────────────────────
+  Avg confidence (correct):    68.16%
+  Avg confidence (incorrect):  65.28%
+  Confidence gap:               2.88%
+
+────────────────────────────────────────────────────────────────────────────────
+💾 MODEL ARTIFACTS:
+────────────────────────────────────────────────────────────────────────────────
+  Saved model: Datasets2_resnet50_E29_VAL98.24.pth
+  Training history: Stored in 'history' dictionary
+  Metrics tracked: Top-1 Acc, Top-5 Acc, Loss, Learning Rate
+
+────────────────────────────────────────────────────────────────────────────────
+🚀 TRAINING CONFIGURATION:
+────────────────────────────────────────────────────────────────────────────────
+  Optimizer: AdamW (lr=0.0001, weight_decay=0.0001)
+  Scheduler: ReduceLROnPlateau (factor=0.5, patience=3, min_lr=1e-07)
+  Batch size: 32
+  Max epochs: 50
+  Early stopping patience: 8
+  Dropout rate: 0.4
+  Gradient clipping: max_norm=1.0
+  Train/Val/Test split: 70%/15%/15%
+  Augmentation: ENABLED
+  Weighted Sampler: DISABLED
+
+
+
 ## Saved Model
 - **Filename:** `Datasets2_resnet50_E29_VAL98.24.pth`
 - **Path:** `../models/Datasets2_resnet50_E29_VAL98.24.pth`
